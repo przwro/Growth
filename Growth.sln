@@ -4,6 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growth.UI", "Growth.UI\Growth.UI.csproj", "{367E60A4-17D4-4D3D-902D-233307ADD4B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BD9A7EA-0397-484E-A330-360565682805} = {0BD9A7EA-0397-484E-A330-360565682805}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growth.Domain", "Growth.Domain\Growth.Domain.csproj", "{015928EB-26D4-4CDD-AD6D-C612C32FEFAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growth.Application", "Growth.Application\Growth.Application.csproj", "{2DB18141-219D-493A-99CC-AC118E5A2868}"
+	ProjectSection(ProjectDependencies) = postProject
+		{015928EB-26D4-4CDD-AD6D-C612C32FEFAE} = {015928EB-26D4-4CDD-AD6D-C612C32FEFAE}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Growth.Infrastructure", "Growth.Infrastructure\Growth.Infrastructure.csproj", "{0BD9A7EA-0397-484E-A330-360565682805}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2DB18141-219D-493A-99CC-AC118E5A2868} = {2DB18141-219D-493A-99CC-AC118E5A2868}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +30,18 @@ Global
 		{367E60A4-17D4-4D3D-902D-233307ADD4B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{367E60A4-17D4-4D3D-902D-233307ADD4B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{367E60A4-17D4-4D3D-902D-233307ADD4B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015928EB-26D4-4CDD-AD6D-C612C32FEFAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015928EB-26D4-4CDD-AD6D-C612C32FEFAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015928EB-26D4-4CDD-AD6D-C612C32FEFAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015928EB-26D4-4CDD-AD6D-C612C32FEFAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DB18141-219D-493A-99CC-AC118E5A2868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DB18141-219D-493A-99CC-AC118E5A2868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DB18141-219D-493A-99CC-AC118E5A2868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DB18141-219D-493A-99CC-AC118E5A2868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD9A7EA-0397-484E-A330-360565682805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD9A7EA-0397-484E-A330-360565682805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD9A7EA-0397-484E-A330-360565682805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD9A7EA-0397-484E-A330-360565682805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
