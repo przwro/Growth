@@ -7,4 +7,5 @@ public interface IApplicationDbContext : IDisposable
 {
     DbSet<ApplicationUser> Users { get; set; }
     DbSet<Address> Addresses { get; set; }
+    DbSet<Friend> Friends { get; set; }
 }
