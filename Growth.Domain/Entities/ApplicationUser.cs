@@ -9,4 +9,6 @@ public class ApplicationUser
     public bool IsDeleted { get; set; }
     public Address Address { get; set; }
     public ICollection<Friend> Friends { get; set; } = new HashSet<Friend>();
+    public ICollection<House> Houses { get; set; }
+
 }
