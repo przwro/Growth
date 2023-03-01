@@ -4,5 +4,5 @@ public class InternetShop
 {
     public int Id { get; set; } 
     public string Name { get; set; }
-    public ICollection<UserInternetShop> UserInternetShops { get; set; } = new HashSet<UserInternetShop>();
+    public ICollection<UserInternetShop> UserInternetShop { get; set; } = new HashSet<UserInternetShop>();
 }

@@ -16,7 +16,7 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Car> Cars { get; set; }
     public DbSet<InternetShop> InternetShops { get; set; }
-    public DbSet<UserInternetShop> UserInternetShops { get; set; }
+    public DbSet<UserInternetShop> UserInternetShop { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

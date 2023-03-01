@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Growth.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230301142855_init")]
+    [Migration("20230301144602_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -210,7 +210,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("InternetShopId");
 
-                    b.ToTable("UserInternetShops");
+                    b.ToTable("UserInternetShop");
 
                     b.HasData(
                         new
@@ -265,13 +265,13 @@ namespace Growth.Infrastructure.Persistance.Migrations
             modelBuilder.Entity("Growth.Domain.Entities.UserInternetShop", b =>
                 {
                     b.HasOne("Growth.Domain.Entities.InternetShop", "InternetShop")
-                        .WithMany("UserInternetShops")
+                        .WithMany("UserInternetShop")
                         .HasForeignKey("InternetShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Growth.Domain.Entities.User", "User")
-                        .WithMany("UserInternetShops")
+                        .WithMany("UserInternetShop")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -283,7 +283,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
             modelBuilder.Entity("Growth.Domain.Entities.InternetShop", b =>
                 {
-                    b.Navigation("UserInternetShops");
+                    b.Navigation("UserInternetShop");
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.User", b =>
@@ -292,7 +292,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.Navigation("Cars");
 
-                    b.Navigation("UserInternetShops");
+                    b.Navigation("UserInternetShop");
                 });
 #pragma warning restore 612, 618
         }

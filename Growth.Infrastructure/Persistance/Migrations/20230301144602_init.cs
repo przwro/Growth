@@ -80,7 +80,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserInternetShops",
+                name: "UserInternetShop",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
@@ -88,15 +88,15 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserInternetShops", x => new { x.UserId, x.InternetShopId });
+                    table.PrimaryKey("PK_UserInternetShop", x => new { x.UserId, x.InternetShopId });
                     table.ForeignKey(
-                        name: "FK_UserInternetShops_InternetShops_InternetShopId",
+                        name: "FK_UserInternetShop_InternetShops_InternetShopId",
                         column: x => x.InternetShopId,
                         principalTable: "InternetShops",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserInternetShops_Users_UserId",
+                        name: "FK_UserInternetShop_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -146,7 +146,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "UserInternetShops",
+                table: "UserInternetShop",
                 columns: new[] { "InternetShopId", "UserId" },
                 values: new object[,]
                 {
@@ -169,8 +169,8 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserInternetShops_InternetShopId",
-                table: "UserInternetShops",
+                name: "IX_UserInternetShop_InternetShopId",
+                table: "UserInternetShop",
                 column: "InternetShopId");
         }
 
@@ -184,7 +184,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "UserInternetShops");
+                name: "UserInternetShop");
 
             migrationBuilder.DropTable(
                 name: "InternetShops");

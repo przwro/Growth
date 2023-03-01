@@ -7,5 +7,5 @@ public class User
     public string LastName { get; set; }
     public Address Address { get; set; }
     public ICollection<Car> Cars { get; set; } = new HashSet<Car>();
-    public ICollection<UserInternetShop> UserInternetShops { get; set; } = new HashSet<UserInternetShop>();
+    public ICollection<UserInternetShop> UserInternetShop { get; set; } = new HashSet<UserInternetShop>();
 }
