@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Growth.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230301101204_init")]
+    [Migration("20230301142855_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -46,6 +46,26 @@ namespace Growth.Infrastructure.Persistance.Migrations
                         .IsUnique();
 
                     b.ToTable("Addresses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Street = "Cisowa 15",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Street = "Zielona 12",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Street = "Cyprysowa 8",
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.Car", b =>
@@ -68,6 +88,44 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Cars");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Model = "Skoda Fabia",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Model = "Audi A3",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Model = "Audi A4",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Model = "Fiat 125p",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Model = "Fiat 126p",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Model = "Fiat 500",
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.InternetShop", b =>
@@ -85,6 +143,18 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("InternetShops");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Clobber"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Asos"
+                        });
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.User", b =>
@@ -106,21 +176,68 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            FirstName = "Przemek",
+                            LastName = "Wróbel"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            FirstName = "Tomek",
+                            LastName = "Brzoza"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            FirstName = "Rafał",
+                            LastName = "Wiśniewski"
+                        });
                 });
 
-            modelBuilder.Entity("InternetShopUser", b =>
+            modelBuilder.Entity("Growth.Domain.Entities.UserInternetShop", b =>
                 {
-                    b.Property<int>("InternetShopsId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
+                    b.Property<int>("InternetShopId")
                         .HasColumnType("int");
 
-                    b.HasKey("InternetShopsId", "UsersId");
+                    b.HasKey("UserId", "InternetShopId");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("InternetShopId");
 
-                    b.ToTable("InternetShopUser");
+                    b.ToTable("UserInternetShops");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            InternetShopId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            InternetShopId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            InternetShopId = 2
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            InternetShopId = 1
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            InternetShopId = 2
+                        });
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.Address", b =>
@@ -145,19 +262,28 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("InternetShopUser", b =>
+            modelBuilder.Entity("Growth.Domain.Entities.UserInternetShop", b =>
                 {
-                    b.HasOne("Growth.Domain.Entities.InternetShop", null)
-                        .WithMany()
-                        .HasForeignKey("InternetShopsId")
+                    b.HasOne("Growth.Domain.Entities.InternetShop", "InternetShop")
+                        .WithMany("UserInternetShops")
+                        .HasForeignKey("InternetShopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Growth.Domain.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("UsersId")
+                    b.HasOne("Growth.Domain.Entities.User", "User")
+                        .WithMany("UserInternetShops")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("InternetShop");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Growth.Domain.Entities.InternetShop", b =>
+                {
+                    b.Navigation("UserInternetShops");
                 });
 
             modelBuilder.Entity("Growth.Domain.Entities.User", b =>
@@ -165,6 +291,8 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("Cars");
+
+                    b.Navigation("UserInternetShops");
                 });
 #pragma warning restore 612, 618
         }

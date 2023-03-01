@@ -9,5 +9,6 @@ public interface IApplicationDbContext : IDisposable
     DbSet<Address> Addresses { get; set; }
     DbSet<Car> Cars { get; set; }
     DbSet<InternetShop> InternetShops { get; set; }
+    DbSet<UserInternetShop> UserInternetShops { get; set; }
 
 }

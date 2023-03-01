@@ -2,6 +2,8 @@
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Growth.Infrastructure.Persistance.Migrations
 {
     /// <inheritdoc />
@@ -78,27 +80,81 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "InternetShopUser",
+                name: "UserInternetShops",
                 columns: table => new
                 {
-                    InternetShopsId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    InternetShopId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InternetShopUser", x => new { x.InternetShopsId, x.UsersId });
+                    table.PrimaryKey("PK_UserInternetShops", x => new { x.UserId, x.InternetShopId });
                     table.ForeignKey(
-                        name: "FK_InternetShopUser_InternetShops_InternetShopsId",
-                        column: x => x.InternetShopsId,
+                        name: "FK_UserInternetShops_InternetShops_InternetShopId",
+                        column: x => x.InternetShopId,
                         principalTable: "InternetShops",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_InternetShopUser_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_UserInternetShops_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "InternetShops",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Clobber" },
+                    { 2, "Asos" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "FirstName", "LastName" },
+                values: new object[,]
+                {
+                    { 1, "Przemek", "Wróbel" },
+                    { 2, "Tomek", "Brzoza" },
+                    { 3, "Rafał", "Wiśniewski" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "Id", "Street", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Cisowa 15", 1 },
+                    { 2, "Zielona 12", 2 },
+                    { 3, "Cyprysowa 8", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cars",
+                columns: new[] { "Id", "Model", "UserId" },
+                values: new object[,]
+                {
+                    { 1, "Skoda Fabia", 1 },
+                    { 2, "Audi A3", 2 },
+                    { 3, "Audi A4", 2 },
+                    { 4, "Fiat 125p", 3 },
+                    { 5, "Fiat 126p", 3 },
+                    { 6, "Fiat 500", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserInternetShops",
+                columns: new[] { "InternetShopId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 2, 2 },
+                    { 1, 3 },
+                    { 2, 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -113,9 +169,9 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InternetShopUser_UsersId",
-                table: "InternetShopUser",
-                column: "UsersId");
+                name: "IX_UserInternetShops_InternetShopId",
+                table: "UserInternetShops",
+                column: "InternetShopId");
         }
 
         /// <inheritdoc />
@@ -128,7 +184,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
                 name: "Cars");
 
             migrationBuilder.DropTable(
-                name: "InternetShopUser");
+                name: "UserInternetShops");
 
             migrationBuilder.DropTable(
                 name: "InternetShops");

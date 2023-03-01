@@ -7,7 +7,7 @@ namespace Growth.Infrastructure.Persistance.Configurations;
 internal class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
-    {
+    {             
         builder.Property(x => x.FirstName)
             .HasMaxLength(100);
 
