@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Growth.Infrastructure.Persistance.Configurations;
 
-internal class HouseConfiguration : IEntityTypeConfiguration<House>
+internal class InternetShopConfiguration : IEntityTypeConfiguration<InternetShop>
 {
-    public void Configure(EntityTypeBuilder<House> builder)
+    public void Configure(EntityTypeBuilder<InternetShop> builder)
     {
         builder.Property(x => x.Name)
             .HasMaxLength(100);

@@ -1,9 +1,9 @@
 ﻿namespace Growth.Domain.Entities;
 
-public class Address
+public class Car
 {
     public int Id { get; set; }
-    public string Street { get; set; } 
+    public string Model { get; set; }
     public int UserId { get; set; }
     public User User { get; set; }
 }

@@ -11,10 +11,10 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
     }
 
-    public DbSet<ApplicationUser> Users { get; set; }
+    public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }
-    public DbSet<Friend> Friends { get; set; }
-    public DbSet<House> Houses { get; set; }
+    public DbSet<Car> Cars { get; set; }
+    public DbSet<InternetShop> InternetShops { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
