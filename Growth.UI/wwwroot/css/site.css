@@ -24,3 +24,7 @@ body {
 .main-navbar {
     font-size: 1.25rem;
 }
+
+a {
+    text-decoration: none;
+}
