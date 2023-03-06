@@ -42,7 +42,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Addresses");
+                    b.ToTable("Addresses", (string)null);
 
                     b.HasData(
                         new
@@ -84,7 +84,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Cars");
+                    b.ToTable("Cars", (string)null);
 
                     b.HasData(
                         new
@@ -139,7 +139,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("InternetShops");
+                    b.ToTable("InternetShops", (string)null);
 
                     b.HasData(
                         new
@@ -172,7 +172,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
 
                     b.HasData(
                         new
@@ -207,7 +207,7 @@ namespace Growth.Infrastructure.Persistance.Migrations
 
                     b.HasIndex("InternetShopId");
 
-                    b.ToTable("UserInternetShop");
+                    b.ToTable("UserInternetShop", (string)null);
 
                     b.HasData(
                         new

@@ -10,5 +10,5 @@ public interface IApplicationDbContext : IDisposable
     DbSet<Car> Cars { get; set; }
     DbSet<InternetShop> InternetShops { get; set; }
     DbSet<UserInternetShop> UserInternetShop { get; set; }
-
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

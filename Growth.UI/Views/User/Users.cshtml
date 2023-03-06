@@ -1,0 +1,86 @@
+﻿@using Growth.Application.Users.Queries.GetUsersBasics;
+@model IEnumerable<UserBasicsDto>
+
+@section Styles {
+	<partial name="Styles/_DataTablesStyles" />
+}
+
+<div class="card card-primary card-border-top">
+
+    <div class="card-body">
+
+        <a href="/User/AddUser" class="btn btn-primary mb-3" role="button">
+            <i class="fa-solid fa-circle-plus"></i>Dodaj użytkownika
+        </a>
+
+        <table id="users" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th class="desktop">FirstName</th>
+                    <th class="desktop">LastName</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var client in Model)
+                {
+                    <tr>
+                        <td>
+                            <a class="edit-link" href="/Client/EditAdminClient?clientId=@client.Id">@client.FirstName</a>
+                        </td>
+                        <td>
+                            @client.LastName
+                        </td>
+                        <td>
+                            <a class="btn btn-success btn-sm" role="button" href="/Client/EditAdminClient?clientId=@client.Id">
+                                <i class="fa-solid fa-magnifying-glass"></i>Edytuj
+                            </a>
+
+                            <button class="btn btn-danger btn-sm" onclick="deleteClient('@client.Id', this)">
+                                <i class="fa-solid fa-trash-can"></i>Usuń
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="Scripts/_DataTablesScripts" />
+    <script>
+
+        var selectedRow;
+        var selectedClientId = 0;
+        var users;
+
+        $(document).ready(function () {
+
+            users = $('#users').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
+                responsive: true,
+                autoWidth: false,
+                lengthChange: true,
+                language: {
+                    url: `/lib/datatables/lang/pl.json`
+                },
+                order: [[0, "asc"]],
+            });
+
+        });
+
+
+        function refreshTable() {
+            users.draw();
+        }
+
+    </script>
+}
